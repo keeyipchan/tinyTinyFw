@@ -61,12 +61,12 @@ function run($controller) {
 }
 class Field {
 }
-function field($key, $model, $config) {
+function field($key, $property, $config) {
 	$field = new Field();
 	$field->config = array_merge(
 		array(
 			'key' => $key,
-			'model' => $model
+			'model' => $property
 		),
 		$config
 	);

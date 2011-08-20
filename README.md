@@ -2,19 +2,19 @@ A tiny tiny php framework (php 5.3+).
 
 USAGE
 ===
-"http://localhost/~keeyipchan/index.php?go=user:join"
+'http://localhost/~keeyipchan/index.php?go=user:join'
 
 OVERVIEW
 ===
 
-browser -> index.php?go=user:join -> server(index.php) -> run($controllers[$_REQUEST['go']])
+browser -> 'index.php?go=user:join' -> server(index.php) -> run($controllers[$_REQUEST['go']])
 
 
 
 GOALS
 ===
 
-*	Encourage code reuse/sensible abstractions, favor compositing components instead of rabid inheritance
+*	Encourage code reuse/sensible abstractions, favor composition instead of rabid inheritance
 *	Strict treatment of user input:
 	*	'''Property''' represents a domain-specific datatype, use this instead of raw data types
 		*	Declarative: $Username = property()->must('maxChars', 255)->will('truncate');
@@ -32,10 +32,12 @@ EXAMPLE, render a table
 ===
 
 ```php
+<?php
+
 $userDetails = array(
 	'id' => 123,
 	'username' => 'keeyipchan',
-	'email' => 'keeyipchan@yahoo.com'
+	'email' => 'hello@example.com'
 );
 
 echo
@@ -47,4 +49,6 @@ dom('table',
 			dom('td', $str));
 	}, array_keys($userDetails), array_values($userDetails)))
 ->css(array('font-family' => 'tahoma', 'border-collapse' => 'collapse'));
+
+?>
 ```

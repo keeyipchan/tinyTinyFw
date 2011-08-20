@@ -47,7 +47,7 @@ function field($key, $property, $config) {
 	return $field;
 }
 
-class Controller {
+class Module {
 	var $fields = array();
 
 	function prompt($field) {
@@ -69,14 +69,14 @@ class Controller {
 	}
 }
 
-function controller () {
-	return new Controller();
+function module () {
+	return new Module();
 }
 
-function run($controller) {
+function run($module) {
 	if (empty($_POST)):
-		$callback = $controller->idleCallback;
-		$callback($controller);
+		$callback = $module->idleCallback;
+		$callback($module);
 	endif;
 }
 

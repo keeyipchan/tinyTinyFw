@@ -2,7 +2,7 @@
 require_once dirname(__FILE__) . '/../_lib/tinyTinyFw.php';
 require_once dirname(__FILE__) . '/properties.php';
 
-$controllers['user:join'] = controller()
+$modules['user:join'] = module()
 	->prompt(field('username', $Username, array(
 		'display:title' => 'Choose a username')))
 

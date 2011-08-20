@@ -1,8 +1,8 @@
 <?php
-require_once dirname(__FILE__) . '/_app/controller.user.php';
+require_once dirname(__FILE__) . '/_app/module.user.php';
 
 run(
-	$controllers['user:join']
+	$modules['user:join']
 );
 
 

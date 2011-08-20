@@ -1,6 +1,6 @@
 <?php
 
-function layout2columns($controller) {
+function layout2columns($module) {
 	echo dom('table',
 		array_map(function($field) {
 			$domLabel = $field->config['display:title'];
@@ -12,7 +12,7 @@ function layout2columns($controller) {
 					dom('th', $domLabel),
 					dom('td',
 						dom('input')));
-		}, $controller->fields)
+		}, $module->fields)
 	);
 }
 

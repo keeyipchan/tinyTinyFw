@@ -1,5 +1,6 @@
 <?php
 
+// TODO: May want to abstract into a Layout class, and not assume that we are rendering form elements.
 function layout2columns($controller) {
 	echo
 	dom('table',

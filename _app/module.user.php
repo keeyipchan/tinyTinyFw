@@ -24,7 +24,8 @@ $modules['user:join'] = module()
 		$user = User::create($values);
 
 		// Can return either a layout function or dom.
-		return dom('div',
+		return
+		dom('div',
 			dom('message:ok', "Thank you."),
 			dom('message:info', "Don't forget to join a club."));
 	});

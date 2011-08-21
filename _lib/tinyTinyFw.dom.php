@@ -3,11 +3,18 @@
 class Dom {
 	var $children = array();
 	var $css = array();
+	var $data = array();
 
 	static $singulars = array();
+	static $widgets = array();
 
 	function __toString() {
 		$tag = $this->tag;
+
+		if (!empty(Dom::$widgets[$tag])):
+			$function = Dom::$widgets[$tag];
+			return '' . $function($this);
+		endif;
 
 		$attrs = array();
 
@@ -47,6 +54,15 @@ class Dom {
 	function css($css) {
 		$this->css = array_merge($this->css, $css);
 		return $this;
+	}
+
+	function set($key, $value) {
+		$this->data[$key] = $value;
+		return $this;
+	}
+
+	function get($key) {
+		return $this->data[$key];
 	}
 }
 

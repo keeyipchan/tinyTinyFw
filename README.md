@@ -3,7 +3,7 @@ A tiny tiny php framework (php 5.3+).
 OVERVIEW
 ===
 
-Browser &rarr; 'index.php?go=user:join' &rarr; Server (index.php) &rarr; run($modules[$_REQUEST['go']])
+Browser &rarr; <code>'index.php?go=user:join'</code> &rarr; Server (index.php) &rarr; <code>run($modules[$_REQUEST['go']])</code>
 
 
 API
@@ -23,7 +23,7 @@ GOALS
 *	Encourage code reuse/sensible abstractions, favor composition instead of rabid inheritance
 *	Strict treatment of user input:
 	*	<b>Property</b> represents a domain-specific data type, use this instead of raw data types
-		*	Declarative: $Username = property()->must('maxChars', 255)->will('truncate');
+		*	Declarative: <code>$Username = property()->must('maxChars', 255)->will('truncate');</code>
 			*	Validation and other metadata is baked into the definition
 			*	Renderers are able to discern how to render a property based on metadata
 *	Flexible in-memory dom representation:

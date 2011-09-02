@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__FILE__) . '/tinyTinyFw.sugar.php';
 require_once dirname(__FILE__) . '/tinyTinyFw.layouts.php';
 require_once dirname(__FILE__) . '/tinyTinyFw.dom.php';
 require_once dirname(__FILE__) . '/tinyTinyFw.properties.php';

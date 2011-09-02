@@ -39,7 +39,21 @@ ROADMAP
 
 *	Experiment with pattern matching sugar to replace regex.
 	*	Large regex strings are ridiculous to maintain, it's better to have a declarative style like the <code>dom()</code> api.
-		* Such as <code>$linkPattern = pattern() -> startsWith('</a') -> subPattern('any', pattern() -> whitespace('atLeast', 1) -> string('href="') -> alphaNumeric('any') -> string('"'));</code>
+		* Such as:
+```php
+<?php
+	set( $patterns['link'],
+		pattern()
+			-> startsWith( '</a' )
+			-> subPattern( 'any', pattern()
+					-> whitespace( 'atLeast', 1 )
+					-> string( 'href="' )
+					-> alphaNumeric( 'any' )
+					-> string( '"' )
+				)
+	);
+?>
+```
 			* Advanges: does not need to parse a regex string (faster); no escaping hell; transformable; readable, maintable.
 *	Experiment with form building (validation, data-binding, rendering).
 *	Experiment with system administration tasks, defined in a declarative way (sequence, parallel, delayed, partitioned).

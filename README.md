@@ -39,22 +39,8 @@ ROADMAP
 
 *	Experiment with pattern matching sugar to replace regex.
 	*	Large regex strings are ridiculous to maintain, it's better to have a declarative style like the <code>dom()</code> api.
-		* Such as:
-```php
-<?php
-	set( $patterns['link'],
-		pattern()
-			-> startsWith( '</a' )
-			-> subPattern( 'any', pattern()
-					-> whitespace( 'atLeast', 1 )
-					-> string( 'href="' )
-					-> alphaNumeric( 'any' )
-					-> string( '"' )
-				)
-	);
-?>
-```
-			* Advanges: does not need to parse a regex string (faster); no escaping hell; transformable; readable, maintable.
+		*	Advantages: does not need to parse a regex string (faster); no escaping hell; transformable; readable, maintable.
+		*	See example.
 *	Experiment with form building (validation, data-binding, rendering).
 *	Experiment with system administration tasks, defined in a declarative way (sequence, parallel, delayed, partitioned).
 *	Experiemnt with core ui controls (overlay, dialog, lists, trees, buttons, tooltips).
@@ -91,5 +77,24 @@ echo(
 			) )
 );
 
+?>
+```
+
+
+EXAMPLE, dom-like pattern-matching
+===
+
+```php
+<?php
+	set( $patterns['link'],
+		pattern()
+			-> startsWith( '</a' )
+			-> subPattern( 'any', pattern()
+					-> whitespace( 'atLeast', 1 )
+					-> string( 'href="' )
+					-> alphaNumeric( 'any' )
+					-> string( '"' )
+				)
+	);
 ?>
 ```

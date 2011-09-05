@@ -3,19 +3,24 @@ A tiny tiny php framework (php 5.3+).
 OVERVIEW
 ===
 
-Browser &rarr; <code>'index.php?go=user:join'</code> &rarr; Server (index.php) &rarr; <code>run($modules[$_REQUEST['go']])</code>
+Browser &rarr; <code>'index.php?go=user:join'</code> &rarr; Server (index.php) &rarr; <code>module($_REQUEST['go'])->run()</code>
 
 
-API
+API:Core
 ===
 
-*	<b>Property</b> - 
-*	<b>Value</b> - 
-*	<b>Field</b> -
-*	<b>Module</b> -
-*	<b>Dom</b> -
-*	<b>Layout</b> -
-*	<b>Sugar</b> -
+*	<b>kv</b> -
+*	<b>pluggable</b> -
+
+
+API:Web
+===
+
+*	<b>dom</b> -
+*	<b>layout</b> -
+*	<b>field</b> - 
+*	<b>module</b> -
+*	<b>command</b> -
 
 
 GOALS
@@ -24,10 +29,10 @@ GOALS
 *	Encourage code reuse/sensible abstractions, favor composition instead of rabid inheritance
 	*	Use <b>sugar</b> to improve readability and enforce standards (some php functions are horribly named).
 *	Strict treatment of user input:
-	*	<b>Property</b> represents a domain-specific data type, use this instead of raw data types
-		*	Declarative: <code>$Username = property()->must('maxChars', 255)->will('truncate');</code>
+	*	<b>Field</b> represents a domain-specific data type, use this instead of raw data types
+		*	Declarative: <code>$Username = field()->must('maxChars', 255)->will('truncate');</code>
 			*	Validation and other metadata is baked into the definition
-			*	Renderers are able to discern how to render a property based on metadata
+			*	Renderers are able to discern how to render a field based on metadata
 *	Flexible in-memory dom representation:
 	*	Not limited to standard html tags
 	*	Support custom tags and transformations
@@ -47,54 +52,3 @@ ROADMAP
 	*	Also need some api for general browser features (history, ajax).
 *	Think of ways to manage js, css, resources.
 
-EXAMPLE, render a table
-===
-
-```php
-<?php
-
-$userDetails = array(
-	'id' => 123,
-	'username' => 'keeyipchan',
-	'email' => 'hello@example.com'
-);
-
-echo(
-	dom( 'table' )
-		-> append( array_map(
-						function( $key, $value ) {
-							return( dom( 'tr',
-										dom( 'th', $key ),
-										dom( 'td', $value )
-								) );
-						},
-						array_keys( $userDetails ),
-						array_values( $userDetails )
-			) )
-		-> css( array(
-					'font-family' => 'tahoma',
-					'border-collapse' => 'collapse'
-			) )
-);
-
-?>
-```
-
-
-EXAMPLE, dom-like pattern-matching
-===
-
-```php
-<?php
-	set( $patterns['link'],
-		pattern()
-			-> startsWith( '</a' )
-			-> subPattern( 'any', pattern()
-					-> whitespace( 'atLeast', 1 )
-					-> string( 'href="' )
-					-> alphaNumeric( 'any' )
-					-> string( '"' )
-				)
-	);
-?>
-```

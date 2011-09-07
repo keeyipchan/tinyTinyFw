@@ -4,7 +4,9 @@ require_once dirname(__FILE__) . '/properties.php';
 
 $modules->let('user:join', function() {
 	$module = new module();
+	
 	$module->let('fields', fields('username', 'email'));
+	
 	// Called when there is no form submission.
 	$module->let('whenIdle', function($self) {
 		return widget('window')->let('content',
@@ -17,15 +19,18 @@ $modules->let('user:join', function() {
 			)
 		);
 	});
+	
 	$module->let('whenError', function($self) {
 		return widget('message:error', "Sorry, there has been an error.");
 	});
+	
 	// Called after form submission and input validation is ok.
 	$module->let('whenOk', function($self, $values) {
 		// $values['username']->property;
 		// Each $value has already gone through
 		// validators defined by the value's underlying property -- see properties.php.
 		$user = user::Create($values);
+		
 		// Can return either a layout function or dom.
 		return dom('div')->append(
 			dom('message:ok', "Thank you."),
